@@ -84,3 +84,8 @@ C:/workspace/live/csharp-crud-api/obj/Debug/net7.0/ref/csharp-crud-api.dll
 /home/cygnet/Documents/projects/csharp-crud-api/obj/Debug/net7.0/csharp-crud-api.pdb
 /home/cygnet/Documents/projects/csharp-crud-api/obj/Debug/net7.0/csharp-crud-api.genruntimeconfig.cache
 /home/cygnet/Documents/projects/csharp-crud-api/obj/Debug/net7.0/ref/csharp-crud-api.dll
+/home/cygnet/Documents/projects/csharp-crud-api/bin/Debug/net7.0/publish_folder/web.config
+/home/cygnet/Documents/projects/csharp-crud-api/bin/Debug/net7.0/publish_folder/appsettings.Development.json
+/home/cygnet/Documents/projects/csharp-crud-api/bin/Debug/net7.0/publish_folder/appsettings.json
+/home/cygnet/Documents/projects/csharp-crud-api/bin/Debug/net7.0/publish_folder/csharp-crud-api.deps.json
+/home/cygnet/Documents/projects/csharp-crud-api/bin/Debug/net7.0/publish_folder/csharp-crud-api.runtimeconfig.json
