@@ -1,0 +1,26 @@
+version: "3"
+services:
+  crud_app:
+    container_name: crud_app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "5001:80"
+    environment:
+      - ConnectionStrings_DefaultConnection="Host=db;Database=postgres;Username=postgres;Password=postgres"
+
+  db:
+    container_name: db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    volumes:
+      - pgdatabase:/var/lib/postgresql/data
+
+volumes:
+  pgdatabase:

@@ -1,0 +1,17 @@
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/csharp-crud-api
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/appsettings.Development.json
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/appsettings.json
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/csharp-crud-api.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/csharp-crud-api.runtimeconfig.json
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/csharp-crud-api.pdb
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Microsoft.AspNetCore.OpenApi.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Microsoft.EntityFrameworkCore.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Microsoft.EntityFrameworkCore.Abstractions.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Microsoft.EntityFrameworkCore.Relational.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Microsoft.OpenApi.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Npgsql.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Swashbuckle.AspNetCore.Swagger.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/cygnet/Documents/projects/csharp-crud-api/publish_folder/csharp-crud-api.deps.json
