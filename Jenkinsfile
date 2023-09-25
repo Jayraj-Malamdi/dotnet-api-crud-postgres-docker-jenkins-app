@@ -40,6 +40,14 @@ pipeline {
                 '''
             }
         }
+        stage ("Publish Application"){
+            steps{
+                echo"Cleaning publish folder"
+                sh "rm -rf ./publish_folder"
+                echo "Publishing .NET Application"
+                sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./publish_folder"
+            }
+            }
         stage("Deploy"){
             steps{
                 echo "Deploying the container"

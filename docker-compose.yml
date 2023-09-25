@@ -9,6 +9,8 @@ services:
       - "5001:80"
     environment:
       - ConnectionStrings_DefaultConnection="Host=db;Database=postgres;Username=postgres;Password=postgres"
+    networks:
+      - dotnet-api-pipeline-main
 
   db:
     container_name: db
@@ -21,6 +23,13 @@ services:
       - POSTGRES_DB=postgres
     volumes:
       - pgdatabase:/var/lib/postgresql/data
+    networks:
+      - dotnet-api-pipeline-main
 
 volumes:
   pgdatabase:
+
+networks:
+  dotnet-api-pipeline-main:
+    external:
+      name: dotnet-api-pipeline-main
