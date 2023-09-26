@@ -51,7 +51,7 @@ pipeline {
                 
                 withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
                 sh "git add publish_folder_versions"
-                sh "git commit -m \\"publish folder\\" "
+                sh "git commit -m 'publish folder' "
                 sh "git push -u origin main"
             }
             }
