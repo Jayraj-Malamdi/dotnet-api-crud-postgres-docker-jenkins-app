@@ -48,13 +48,27 @@ pipeline {
                 sh "rm -rf ./publish_folder"
                 echo "Publishing .NET Application"
                 sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./publish_folder_versions"
-                
-                withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
-                sh "git add publish_folder_versions"
-                sh "git commit -m 'publish folder' "
-                sh "git push -u origin main"
-                }
             }
+        }
+        stage ("Github Config"){
+            steps{
+                echo "github config"
+                sh 'git config --global user.name "Jayraj Malamdi Jenkins"'
+                sh 'git config --global user.email "heyjayraj@gmail.com"'
+            }
+        }
+        stage ("Push publish folder to github"){
+            steps{
+                script {
+                    def tagName = "version-${new Date().format('yyyyMMddHHmmss')}"    
+                    withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
+                        sh "git add publish_folder_versions"
+                        sh "git commit -m 'publish folder' "
+                        sh "git tag -a ${tagName} -m 'Automated build tag'"
+                        sh "git push origin ${tagName}"
+                    }
+                }
+            }    
         }
         stage("Deploy"){
             steps{
