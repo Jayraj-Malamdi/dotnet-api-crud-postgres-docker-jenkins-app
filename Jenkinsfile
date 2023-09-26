@@ -53,8 +53,9 @@ pipeline {
                 sh "git add publish_folder_versions"
                 sh "git commit -m 'publish folder' "
                 sh "git push -u origin main"
+                }
             }
-            }
+        }
         stage("Deploy"){
             steps{
                 echo "Deploying the container"
