@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'builtin_label'
+    }
     stages {
         stage("Clean Workspace") {
             steps {
@@ -52,6 +54,7 @@ pipeline {
             steps{
                 echo "Deploying the container"
                 sh "docker-compose up -d"
+                sh "docker-compose push"
             }
         }
     }
