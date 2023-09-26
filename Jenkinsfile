@@ -47,7 +47,12 @@ pipeline {
                 echo"Cleaning publish folder"
                 sh "rm -rf ./publish_folder"
                 echo "Publishing .NET Application"
-                sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./publish_folder"
+                sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./publish_folder_versions"
+                
+                withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
+                sh "git add publish_folder_versions"
+                sh "git commit -m \\"publish folder\\" "
+                sh "git push -u origin main"
             }
             }
         stage("Deploy"){
