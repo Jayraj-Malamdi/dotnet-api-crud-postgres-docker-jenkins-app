@@ -47,7 +47,7 @@ pipeline {
                 echo"Cleaning publish folder"
                 // sh "rm -rf ./publish_folder_versions"
                 echo "Publishing .NET Application"
-                sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./publish_folder_versions"
+                sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./versions"
             }
         }
         stage ("Github Config"){
@@ -58,24 +58,29 @@ pipeline {
             }
         }
         stage("Commit and Push to GitHub") {
-    steps {
-        script {
-            withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
-                sh "git status"
-                sh  "git add publish_folder_versions"
-                sh "git commit -m 'publish folder' "
-
-                // Declare and use gitCommitHash here
-                def gitCommitHash = sh(script: "git rev-parse HEAD", returnStdout: true)
-                echo "git commit hash is: ${gitCommitHash}"
+            steps {
+                dir ("repo2"){  
+                    echo "cloning publish folder repo"
+                    git url:"https://github.com/Jayraj-Malamdi/versions.git", branch: "main"
+                }
+                echo "copying version files"
+                sh "cp -r ${workspace}/versions/* repo2/"
                 
-                sh "git tag ${params.versiontag} ${gitCommitHash}"
-                sh "git push origin ${params.versiontag}"
+                dir("repo2"){
+                    script {
+                        sh "git add ."
+                        sh "git commit -m 'versions publish folder' "
+                        def gitCommitHash = sh(script: "git rev-parse HEAD", returnStdout: true)
+                        echo "git commit hash is: ${gitCommitHash}"
+                        withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
+                        sh "git tag ${params.versiontag} ${gitCommitHash}"
+                        sh "git push origin ${params.versiontag}"
+                    }
+                    }
+                    
+                }
             }
         }
-    }
-}
-
         stage("Deploy"){
             steps{
                 echo "Deploying the container"
