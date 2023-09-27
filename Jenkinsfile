@@ -45,7 +45,7 @@ pipeline {
         stage ("Publish Application"){
             steps{
                 echo"Cleaning publish folder"
-                sh "rm -rf ./publish_folder"
+                // sh "rm -rf ./publish_folder_versions"
                 echo "Publishing .NET Application"
                 sh "dotnet publish ${workspace}/csharp-crud-api.csproj -c Release -o ./publish_folder_versions"
             }
@@ -57,19 +57,25 @@ pipeline {
                 sh 'git config --global user.email "heyjayraj@gmail.com"'
             }
         }
-        stage ("Push publish folder to github"){
-            steps{
-                script {
-                    def tagName = "version-${new Date().format('yyyyMMddHHmmss')}"    
-                    withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
-                        sh "git add publish_folder_versions"
-                        sh "git commit -m 'publish folder' "
-                        sh "git tag -a ${tagName} -m 'Automated build tag'"
-                        sh "git push origin ${tagName}"
-                    }
-                }
-            }    
+        stage("Commit and Push to GitHub") {
+    steps {
+        script {
+            withCredentials([gitUsernamePassword(credentialsId: 'Github_Credentials_for_Jenkins', gitToolName: 'Default')]) {
+                sh "git status"
+                sh  "git add publish_folder_versions"
+                sh "git commit -m 'publish folder' "
+
+                // Declare and use gitCommitHash here
+                def gitCommitHash = sh(script: "git rev-parse HEAD", returnStdout: true)
+                echo "git commit hash is: ${gitCommitHash}"
+                
+                sh "git tag ${params.versiontag} ${gitCommitHash}"
+                sh "git push origin ${params.versiontag}"
+            }
         }
+    }
+}
+
         stage("Deploy"){
             steps{
                 echo "Deploying the container"
