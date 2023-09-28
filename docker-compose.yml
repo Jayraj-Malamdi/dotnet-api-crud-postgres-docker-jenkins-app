@@ -12,8 +12,8 @@ services:
       - ConnectionStrings_DefaultConnection="Host=db;Database=postgres;Username=postgres;Password=postgres"
     networks:
       - dotnet-api-pipeline-main
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
 
   db:
     container_name: db
